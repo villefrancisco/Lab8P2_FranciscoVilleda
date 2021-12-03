@@ -1,13 +1,16 @@
 
 package lab8p2_franciscovilleda_12111170;
 import java.util.*;
+import java.io.Serializable;
 
-public class Partida {
+public class Partida implements Serializable{
     
     private String nombre;
     private Date fecha;
     private ArrayList<Estrella> estrellas = new ArrayList();
     private ArrayList<Jugador> jugadores = new ArrayList();
+    
+    private static final long SerialVersionUID = 1170L;
 
     public Partida(String nombre, Date fecha) {
         this.nombre = nombre;
