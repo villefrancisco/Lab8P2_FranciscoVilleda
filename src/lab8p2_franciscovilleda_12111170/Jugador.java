@@ -1,11 +1,13 @@
 
 package lab8p2_franciscovilleda_12111170;
+import java.io.Serializable;
 
-public class Jugador {
+public class Jugador implements Serializable{
     
     private String nombre;
     private int velocidad;
-
+    private static final long SerialVersionUID = 1172L;
+    
     public Jugador() {
     }
 

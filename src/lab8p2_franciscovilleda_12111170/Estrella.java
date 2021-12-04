@@ -1,11 +1,14 @@
 
 package lab8p2_franciscovilleda_12111170;
+import java.io.Serializable;
 
-public class Estrella {
+public class Estrella implements Serializable{
     
     private String nombre, descripcion;
     private int distancia;
 
+    private static final long SerialVersionUID = 1171L;
+    
     public Estrella() {
     }
 

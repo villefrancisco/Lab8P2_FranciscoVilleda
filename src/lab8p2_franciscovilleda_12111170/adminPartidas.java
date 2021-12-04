@@ -48,7 +48,7 @@ public class adminPartidas {
                         listaPartidas.add(temp);
                     }
                 } catch (EOFException e) {
-                    //encontro el final del archivo
+                    
                 }
                 objeto.close();
                 entrada.close();

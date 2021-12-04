@@ -8,6 +8,7 @@ package lab8p2_franciscovilleda_12111170;
 import javax.swing.JOptionPane;
 import java.util.*;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author JOSE VILLEDA
@@ -37,7 +38,7 @@ public class Principal extends javax.swing.JFrame {
 
         jd_partidas = new javax.swing.JDialog();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        juego_partida = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -48,12 +49,12 @@ public class Principal extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla_partidas = new javax.swing.JTable();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        cb_partidas1 = new javax.swing.JComboBox<>();
-        cb_partidas4 = new javax.swing.JComboBox<>();
+        cb_jugadores = new javax.swing.JComboBox<>();
+        cb_estrellas = new javax.swing.JComboBox<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -85,28 +86,28 @@ public class Principal extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Partida");
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("____");
+        juego_partida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        juego_partida.setText("____");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("____");
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("Estrella");
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("Distancia total");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("____");
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setText("Jugador");
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("Distancia Recorrida");
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -115,7 +116,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("____");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_partidas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -123,15 +124,22 @@ public class Principal extends javax.swing.JFrame {
                 "Nombre", "Velocidad", "Estrella", "Distancia", "Estatus"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tabla_partidas);
 
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton7.setText("Comenzar");
@@ -141,10 +149,15 @@ public class Principal extends javax.swing.JFrame {
 
         jButton9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton9.setText("Agregar");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton9MouseClicked(evt);
+            }
+        });
 
-        cb_partidas1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cb_jugadores.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        cb_partidas4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cb_estrellas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jd_partidasLayout = new javax.swing.GroupLayout(jd_partidas.getContentPane());
         jd_partidas.getContentPane().setLayout(jd_partidasLayout);
@@ -162,7 +175,7 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_partidasLayout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel13))
+                                .addComponent(juego_partida))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_partidasLayout.createSequentialGroup()
                                 .addComponent(jLabel18)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -183,11 +196,11 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(jd_partidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jd_partidasLayout.createSequentialGroup()
-                                .addComponent(cb_partidas1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cb_jugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(cb_partidas4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cb_estrellas, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jd_partidasLayout.createSequentialGroup()
@@ -202,7 +215,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jd_partidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel13))
+                    .addComponent(juego_partida))
                 .addGap(18, 18, 18)
                 .addGroup(jd_partidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jd_partidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -228,8 +241,8 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jd_partidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9)
-                    .addComponent(cb_partidas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cb_partidas4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_jugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_estrellas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
@@ -590,8 +603,28 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
+        inic_partida = (Partida)cb_partidas.getSelectedItem();
+        juego_partida.setText(inic_partida.toString());
+        setJugadorEstrella();
         openPartidas();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
+        // TODO add your handling code here:
+        try{
+            DefaultTableModel modelo = (DefaultTableModel)tabla_partidas.getModel();
+            Jugador j = (Jugador)cb_jugadores.getSelectedItem();
+            Estrella e = (Estrella)cb_estrellas.getSelectedItem();
+            modelo.addRow(new Object[]{j.getNombre(),
+                j.getVelocidad(),
+                e.getNombre(),
+                e.getDistancia(),
+                "Espera"
+            });
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "No se pudo agregar esta partida");
+        }
+    }//GEN-LAST:event_jButton9MouseClicked
 
     public void setModeloComboBox(){
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -608,6 +641,19 @@ public class Principal extends javax.swing.JFrame {
         jd_partidas.setLocationRelativeTo(this);
         jd_partidas.setModal(true);
         jd_partidas.setVisible(true);
+    }
+    
+    public void setJugadorEstrella(){
+        DefaultComboBoxModel modeloJug = new DefaultComboBoxModel();
+        DefaultComboBoxModel modeloEst = new DefaultComboBoxModel();
+        for (Jugador temp : inic_partida.getJugadores()) {
+            modeloJug.addElement(temp);
+        }
+        for (Estrella temp : inic_partida.getEstrellas()){
+            modeloEst.addElement(temp);
+        }
+        cb_jugadores.setModel(modeloJug);
+        cb_estrellas.setModel(modeloEst);
     }
     /**
      * @param args the command line arguments
@@ -645,11 +691,11 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_estrellas;
+    private javax.swing.JComboBox<String> cb_jugadores;
     private javax.swing.JComboBox<String> cb_partidas;
-    private javax.swing.JComboBox<String> cb_partidas1;
     private javax.swing.JComboBox<String> cb_partidas2;
     private javax.swing.JComboBox<String> cb_partidas3;
-    private javax.swing.JComboBox<String> cb_partidas4;
     private javax.swing.JTextArea est_descripcion;
     private javax.swing.JFormattedTextField est_distancia;
     private javax.swing.JTextField est_nombre;
@@ -665,7 +711,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -689,10 +734,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JDialog jd_partidas;
+    private javax.swing.JLabel juego_partida;
     private javax.swing.JTextField jug_nombre;
     private javax.swing.JFormattedTextField jug_velocidad;
     private javax.swing.JTextField nom_partida;
+    private javax.swing.JTable tabla_partidas;
     // End of variables declaration//GEN-END:variables
 }
