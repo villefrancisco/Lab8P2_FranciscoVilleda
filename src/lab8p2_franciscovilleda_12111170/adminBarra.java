@@ -1,6 +1,7 @@
 
 package lab8p2_franciscovilleda_12111170;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JTable;
@@ -10,6 +11,7 @@ public class adminBarra extends Thread{
     
     private JProgressBar barra;
     private JTable tabla;
+    private JLabel jug, star, total, recor;
     private boolean avanzar;
     private boolean existe;
     private int size;
@@ -17,12 +19,17 @@ public class adminBarra extends Thread{
     private int rows;
     private int fila;
 
-    public adminBarra(JProgressBar barra, JTable tabla, int fila) {
+    public adminBarra(JProgressBar barra, JTable tabla, int fila,
+            JLabel jug, JLabel star, JLabel total, JLabel recor) {
         this.barra = barra;
         this.tabla = tabla;
         this.avanzar = true;
         this.existe = true;
         this.fila = fila;
+        this.jug = jug;
+        this.star = star;
+        this.total = total;
+        this.recor = recor;
     }
 
     public int getFila() {
@@ -78,12 +85,16 @@ public class adminBarra extends Thread{
         while(existe){
             rows = ((DefaultTableModel)tabla.getModel()).getRowCount();
             if(fila < rows){
+                jug.setText(((DefaultTableModel)tabla.getModel()).getValueAt(fila, 0).toString());
+                star.setText(((DefaultTableModel)tabla.getModel()).getValueAt(fila, 3).toString());
                 velocidad = (int)((DefaultTableModel)tabla.getModel()).getValueAt(fila, 1);
                 size = (int)((DefaultTableModel)tabla.getModel()).getValueAt(fila, 3);
+                total.setText("" + size);
                 barra.setMaximum(size);
                 if(avanzar){
                     tabla.setValueAt("Jugando", fila, 4);
                     barra.setValue(barra.getValue()+ velocidad);
+                    recor.setText("" + barra.getValue());
                     if(barra.getValue() >= size){
                         tabla.setValueAt("Completado", fila, 4);
                             fila++;

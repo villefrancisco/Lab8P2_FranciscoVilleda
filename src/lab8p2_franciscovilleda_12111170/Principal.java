@@ -27,7 +27,8 @@ public class Principal extends javax.swing.JFrame {
         ad.cargarArchivo();
         partidas = ad.getListaPartidas();
         setModeloComboBox();
-        this.ab = new adminBarra(barra, tabla_partidas, fila);
+        this.ab = new adminBarra(barra, tabla_partidas, fila,
+        label_jugador, label_estrella, label_distancia, label_recorrido);
     }
 
     /**
@@ -42,14 +43,14 @@ public class Principal extends javax.swing.JFrame {
         jd_partidas = new javax.swing.JDialog();
         jLabel12 = new javax.swing.JLabel();
         juego_partida = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        label_recorrido = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        label_distancia = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        label_estrella = new javax.swing.JLabel();
+        label_jugador = new javax.swing.JLabel();
         barra = new javax.swing.JProgressBar();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_partidas = new javax.swing.JTable();
@@ -95,8 +96,8 @@ public class Principal extends javax.swing.JFrame {
         juego_partida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         juego_partida.setText("____");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel14.setText("____");
+        label_recorrido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label_recorrido.setText("____");
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("Estrella");
@@ -104,8 +105,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("Distancia total");
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel17.setText("____");
+        label_distancia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label_distancia.setText("____");
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setText("Jugador");
@@ -113,11 +114,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("Distancia Recorrida");
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel20.setText("____");
+        label_estrella.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label_estrella.setText("____");
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel21.setText("____");
+        label_jugador.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label_jugador.setText("____");
 
         barra.setForeground(new java.awt.Color(255, 51, 102));
         barra.setToolTipText("");
@@ -187,7 +188,7 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_partidasLayout.createSequentialGroup()
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel17))
+                                .addComponent(label_distancia))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_partidasLayout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -195,19 +196,19 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_partidasLayout.createSequentialGroup()
                                 .addComponent(jLabel18)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel21)
+                                .addComponent(label_jugador)
                                 .addGap(1, 1, 1)))
                         .addGroup(jd_partidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_partidasLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel15)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel20))
+                                .addComponent(label_estrella))
                             .addGroup(jd_partidasLayout.createSequentialGroup()
                                 .addGap(158, 158, 158)
                                 .addComponent(jLabel19)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel14))))
+                                .addComponent(label_recorrido))))
                     .addGroup(jd_partidasLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(jd_partidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -236,16 +237,16 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jd_partidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jd_partidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel15)
-                        .addComponent(jLabel20))
+                        .addComponent(label_estrella))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_partidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel18)
-                        .addComponent(jLabel21)))
+                        .addComponent(label_jugador)))
                 .addGap(20, 20, 20)
                 .addGroup(jd_partidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jLabel17)
+                    .addComponent(label_distancia)
                     .addComponent(jLabel19)
-                    .addComponent(jLabel14))
+                    .addComponent(label_recorrido))
                 .addGap(18, 18, 18)
                 .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -645,7 +646,8 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         fila = ab.getFila();
         ab.setExiste(false);
-        this.ab = new adminBarra(barra, tabla_partidas, fila);
+        this.ab = new adminBarra(barra, tabla_partidas, fila,
+        label_jugador, label_estrella, label_distancia, label_recorrido);
         ab.start();
     }//GEN-LAST:event_jButton7MouseClicked
 
@@ -740,15 +742,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -766,6 +764,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel juego_partida;
     private javax.swing.JTextField jug_nombre;
     private javax.swing.JFormattedTextField jug_velocidad;
+    private javax.swing.JLabel label_distancia;
+    private javax.swing.JLabel label_estrella;
+    private javax.swing.JLabel label_jugador;
+    private javax.swing.JLabel label_recorrido;
     private javax.swing.JTextField nom_partida;
     private javax.swing.JTable tabla_partidas;
     // End of variables declaration//GEN-END:variables
