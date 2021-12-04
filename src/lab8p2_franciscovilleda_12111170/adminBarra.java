@@ -86,7 +86,7 @@ public class adminBarra extends Thread{
             rows = ((DefaultTableModel)tabla.getModel()).getRowCount();
             if(fila < rows){
                 jug.setText(((DefaultTableModel)tabla.getModel()).getValueAt(fila, 0).toString());
-                star.setText(((DefaultTableModel)tabla.getModel()).getValueAt(fila, 3).toString());
+                star.setText(((DefaultTableModel)tabla.getModel()).getValueAt(fila, 2).toString());
                 velocidad = (int)((DefaultTableModel)tabla.getModel()).getValueAt(fila, 1);
                 size = (int)((DefaultTableModel)tabla.getModel()).getValueAt(fila, 3);
                 total.setText("" + size);
