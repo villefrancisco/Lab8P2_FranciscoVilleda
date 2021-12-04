@@ -1,22 +1,27 @@
 
 package lab8p2_franciscovilleda_12111170;
 
+import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class adminBarra extends Thread{
     
     private JProgressBar barra;
+    private JTable tabla;
     private boolean avanzar;
     private boolean existe;
     private int size;
     private int velocidad;
+    private int rows;
+    private int fila = 0;
 
-    public adminBarra(JProgressBar barra, int size, int velocidad) {
+    public adminBarra(JProgressBar barra, JTable tabla) {
         this.barra = barra;
+        this.tabla = tabla;
         this.avanzar = true;
         this.existe = true;
-        this.size = size;
-        this.velocidad = velocidad;
     }
 
     public JProgressBar getBarra() {
@@ -62,15 +67,30 @@ public class adminBarra extends Thread{
     @Override
     public void run(){
         while(existe){
-            if(avanzar){
-                barra.setValue(barra.getValue()+1);
-                if(barra.getValue()==100000000){
-                    existe=false;
-                }                
-            } 
-            try {
-                Thread.sleep(0);
-            } catch (InterruptedException ex) {
+            rows = ((DefaultTableModel)tabla.getModel()).getRowCount();
+            if(fila < rows){
+                velocidad = (int)((DefaultTableModel)tabla.getModel()).getValueAt(fila, 1);
+                size = (int)((DefaultTableModel)tabla.getModel()).getValueAt(fila, 3);
+                if(avanzar){
+                    tabla.setValueAt("Jugando", fila, 4);
+                    barra.setValue(barra.getValue()+20);
+                    if(barra.getValue() >= 100){
+                        tabla.setValueAt("Completado", fila, 4);
+                            fila++;
+                            barra.setValue(0);
+                    }                
+                }
+                else{
+                    tabla.setValueAt("Pausa", fila, 4);
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                }
+            }
+            else{
+                existe = false;
+                JOptionPane.showMessageDialog(null,"Partidas Completadas");
             }
         }
     }
