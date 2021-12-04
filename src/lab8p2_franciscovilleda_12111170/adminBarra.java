@@ -15,13 +15,22 @@ public class adminBarra extends Thread{
     private int size;
     private int velocidad;
     private int rows;
-    private int fila = 0;
+    private int fila;
 
-    public adminBarra(JProgressBar barra, JTable tabla) {
+    public adminBarra(JProgressBar barra, JTable tabla, int fila) {
         this.barra = barra;
         this.tabla = tabla;
         this.avanzar = true;
         this.existe = true;
+        this.fila = fila;
+    }
+
+    public int getFila() {
+        return fila;
+    }
+
+    public void setFila(int fila) {
+        this.fila = fila;
     }
 
     public JProgressBar getBarra() {
@@ -71,14 +80,15 @@ public class adminBarra extends Thread{
             if(fila < rows){
                 velocidad = (int)((DefaultTableModel)tabla.getModel()).getValueAt(fila, 1);
                 size = (int)((DefaultTableModel)tabla.getModel()).getValueAt(fila, 3);
+                barra.setMaximum(size);
                 if(avanzar){
                     tabla.setValueAt("Jugando", fila, 4);
-                    barra.setValue(barra.getValue()+20);
-                    if(barra.getValue() >= 100){
+                    barra.setValue(barra.getValue()+ velocidad);
+                    if(barra.getValue() >= size){
                         tabla.setValueAt("Completado", fila, 4);
                             fila++;
                             barra.setValue(0);
-                    }                
+                    }  
                 }
                 else{
                     tabla.setValueAt("Pausa", fila, 4);

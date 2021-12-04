@@ -19,6 +19,7 @@ public class Principal extends javax.swing.JFrame {
     adminPartidas ad = new adminPartidas("./partidas.cbm");
     Partida inic_partida = null;
     adminBarra ab;
+    int fila = 0;
     
     public Principal() {
         initComponents();
@@ -26,7 +27,7 @@ public class Principal extends javax.swing.JFrame {
         ad.cargarArchivo();
         partidas = ad.getListaPartidas();
         setModeloComboBox();
-        this.ab = new adminBarra(barra, tabla_partidas);
+        this.ab = new adminBarra(barra, tabla_partidas, fila);
     }
 
     /**
@@ -118,6 +119,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("____");
 
+        barra.setForeground(new java.awt.Color(255, 51, 102));
+        barra.setToolTipText("");
+
         tabla_partidas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -153,6 +157,11 @@ public class Principal extends javax.swing.JFrame {
 
         jButton8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton8.setText("Pausar");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
 
         jButton9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton9.setText("Agregar");
@@ -202,17 +211,17 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jd_partidasLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(jd_partidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jd_partidasLayout.createSequentialGroup()
                                 .addComponent(cb_jugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cb_estrellas, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jd_partidasLayout.createSequentialGroup()
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cb_estrellas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jd_partidasLayout.createSequentialGroup()
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
@@ -634,9 +643,16 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
-        adminBarra ab = new adminBarra(barra, tabla_partidas);
+        fila = ab.getFila();
+        ab.setExiste(false);
+        this.ab = new adminBarra(barra, tabla_partidas, fila);
         ab.start();
     }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        // TODO add your handling code here:
+        ab.setAvanzar(false);
+    }//GEN-LAST:event_jButton8MouseClicked
 
     public void setModeloComboBox(){
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
